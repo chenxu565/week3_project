@@ -1,5 +1,21 @@
 import "./styles.css";
 
+let fetch_addr = [
+  "https://dog.ceo/api/breed/african/images/random",
+  "https://dog.ceo/api/breed/pekinese/images/random",
+  "https://dog.ceo/api/breed/cockapoo/images/random",
+  "https://dog.ceo/api/breed/beagle/images/random",
+  "https://dog.ceo/api/breed/briard/images/random"
+];
+
+let description = [
+  "Considered a landrace with limited human interference in their breeding, the Africanis has also been maintained by human owners. The Africanis is a medium-sized, lightly built dog with a long slender muzzle and, usually, a short coat. It has been described as resembling a cross between a Greyhound and a Dingo.",
+  "The Pekingese is a breed of toy dog, originating in China. The breed was favored by royalty of the Chinese Imperial court as both a lap dog and companion dog, and its name refers to the city of Peking where the Forbidden City is located. ",
+  "A cockapoo also known as a spoodle or cockerdoodle is a dog crossbreed bred from a Cocker Spaniel and a Poodle, most commonly the Miniature Poodle.",
+  "The beagle breed is a small scent hound, similar in appearance to the much larger foxhound. The beagle was developed primarily for hunting hare known as beagling. Possessing a great sense of smell and superior tracking instincts, the beagle is the primary breed used as a detection dog for prohibited agricultural imports and foodstuffs in quarantine around the world. The beagle is intelligent. It is a popular pet due to its size, good temper, and a lack of inherited health problems. ",
+  "The Briard or Berger de Brie is a French breed of large shepherd dog, traditionally used both for herding sheep and to defend them. It was first shown at the first Paris dog show, in 1863; the first Briard to be registered in the Livre des Origines Françaises, the national stud-book, was Sans Gêne in 1885."
+];
+
 if (document.readyState !== "loading") {
   initializeCode();
 } else {
@@ -14,17 +30,18 @@ function initializeCode() {
   let container = document.createElement("div");
   container.classList.add("container");
 
+  //  console.log(test);
   for (let i = 0; i < 5; i++) {
-    fetch("https://dog.ceo/api/breeds/image/random")
+    fetch(fetch_addr[i])
       .then((response) => response.json())
       .then((data) => {
-        initItem(container, data);
+        initItem(container, data, description[i]);
       });
   }
   body.appendChild(container);
 }
 
-function initItem(container, data) {
+function initItem(container, data, desc) {
   let bn = data["message"].split("/")[4];
   let src = data["message"];
 
@@ -41,8 +58,7 @@ function initItem(container, data) {
 
   let paragraph = document.createElement("p");
   paragraph.classList.add("wiki-text");
-  paragraph.innerHTML =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+  paragraph.innerHTML = desc;
 
   let imageContainer = document.createElement("div");
   imageContainer.classList.add("img-container");
