@@ -20,15 +20,8 @@ function initializeCode() {
       .then((data) => {
         initItem(container, data);
       });
-    //   let wikiItem = initItem();
-    //   container.appendChild(wikiItem);
   }
   body.appendChild(container);
-  /*
-  let items = document.getElementsByClassName("wiki-item");
-  for (let i = 0; i < items.length; i++) {
-    fetchFill(items[i]);
-  }*/
 }
 
 function initItem(container, data) {
@@ -65,12 +58,4 @@ function initItem(container, data) {
   wikiItem.appendChild(wikiContent);
 
   container.appendChild(wikiItem);
-}
-
-async function fetchFill() {
-  const response = await fetch("https://dog.ceo/api/breeds/image/random");
-  const data = await response.json();
-  let breed_name = data["message"].split("/")[4];
-  let img_src = data["message"];
-  return { breed_name, img_src };
 }
