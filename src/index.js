@@ -19,39 +19,24 @@ function initializeCode() {
     container.appendChild(wikiItem);
   }
   body.appendChild(container);
-
+  /*
   let items = document.getElementsByClassName("wiki-item");
   for (let i = 0; i < items.length; i++) {
     fetchFill(items[i]);
-  }
-  /*
-  fetch("https://dog.ceo/api/breeds/image/random")
-  .then(response=> response.json())
-  .then(data=>{
-    console.log(data);
-  });
-    */
-}
-
-function fetchFill(item) {
-  fetch("https://dog.ceo/api/breeds/image/random")
-    .then((response) => response.json())
-    .then((data) => {
-      let breed = data["message"].split("/")[4];
-      let header = item.querySelectorAll(".wiki-header")[0];
-      header.innerHTML = breed;
-      let wikiImg = item.querySelectorAll(".wiki-img")[0];
-      wikiImg.src = data["message"];
-    });
+  }*/
 }
 
 function initItem() {
+  result = fetchFill();
+  let bn = result.breed_name;
+  let src = res.img_src;
+
   let wikiItem = document.createElement("div");
   wikiItem.classList.add("wiki-item");
 
   let wikiHeader = document.createElement("h1");
   wikiHeader.classList.add("wiki-header");
-  wikiHeader.innerHTML = "Breed X";
+  wikiHeader.innerHTML = bn;
   wikiItem.appendChild(wikiHeader);
 
   let wikiContent = document.createElement("div");
@@ -76,4 +61,14 @@ function initItem() {
   wikiItem.appendChild(wikiContent);
 
   return wikiItem;
+}
+
+function fetchFill() {
+  return fetch("https://dog.ceo/api/breeds/image/random")
+    .then((response) => response.json())
+    .then((data) => {
+      let breed_name = data["message"].split("/")[4];
+      let img_src = data["message"];
+      return { breed_name, img_src };
+    });
 }
