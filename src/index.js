@@ -11,6 +11,9 @@ if (document.readyState !== "loading") {
 function initializeCode() {
   document.getElementById("app").innerHTML = "<h1>Hello!</h1>";
   let body = document.body;
+  let container = document.createElement("div");
+  container.classList.add("container");
+
   for (let i = 0; i < 5; i++) {
     let wikiItem = document.createElement("div");
     wikiItem.classList.add("wiki-item");
@@ -41,6 +44,8 @@ function initializeCode() {
 
     wikiItem.appendChild(wikiContent);
 
-    body.appendChild(wikiItem);
+    container.appendChild(wikiItem);
+
+    body.appendChild(container);
   }
 }
