@@ -18,9 +18,12 @@ function initializeCode() {
     let wikiItem = initItem();
     container.appendChild(wikiItem);
   }
-
   body.appendChild(container);
 
+  let items = document.getElementsByClassName("wiki-item");
+  for (let i = 0; i < items.length; i++) {
+    fetchFill(items[i]);
+  }
   /*
   fetch("https://dog.ceo/api/breeds/image/random")
   .then(response=> response.json())
@@ -28,6 +31,18 @@ function initializeCode() {
     console.log(data);
   });
     */
+}
+
+function fetchFill(item) {
+  fetch("https://dog.ceo/api/breeds/image/random")
+    .then((response) => response.json())
+    .then((data) => {
+      let breed = data["message"].split("/")[4];
+      let header = item.querySelectorAll(".wiki-header")[0];
+      header.innerHTML = breed;
+      let wikiImg = item.querySelectorAll(".wiki-img")[0];
+      wikiImg.src = data["message"];
+    });
 }
 
 function initItem() {
