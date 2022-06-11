@@ -20,7 +20,7 @@ function initializeCode() {
 
     let wikiHeader = document.createElement("h1");
     wikiHeader.classList.add("wiki-header");
-    wikiHeader.innerHTML = "Bread X";
+    wikiHeader.innerHTML = "Breed X";
     wikiItem.appendChild(wikiHeader);
 
     let wikiContent = document.createElement("div");
