@@ -12,10 +12,14 @@ function initializeCode() {
   document.getElementById("app").innerHTML = "<h1>Hello!</h1>";
   for (let i = 0; i < 5; i++) {
     let body = document.body;
+    let wikiItem = document.createElement("div");
+    wikiItem.classList.add("wiki-item");
+
     let wikiHeader = document.createElement("h1");
     wikiHeader.classList.add("wiki-header");
     wikiHeader.innerHTML = "Bread X";
-    body.appendChild(wikiHeader);
+    wikiItem.appendChild(wikiHeader);
+
     let wikiContent = document.createElement("div");
     wikiContent.classList.add("wiki-content");
     let paragraph = document.createElement("p");
@@ -29,6 +33,9 @@ function initializeCode() {
     imageContainer.appendChild(wikiImg);
     wikiContent.appendChild(paragraph);
     wikiContent.appendChild(imageContainer);
-    body.appendChild(wikiContent);
+
+    wikiItem.appendChild(wikiContent);
+
+    body.appendChild(wikiItem);
   }
 }
