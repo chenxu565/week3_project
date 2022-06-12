@@ -10,3 +10,7 @@ body {
 #wiki-content {
   padding: 1px 1px 1px 1px;
 }
+
+#wiki-img {
+  width: 100%;
+}
