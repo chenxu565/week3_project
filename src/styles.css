@@ -2,15 +2,15 @@ body {
   font-family: sans-serif;
 }
 
-#wiki-item {
+.wiki-item {
   margin: 0 10px 0 10px;
-  box-shadow: 0 1em 1em 1em;
+  box-shadow: -0em -0.1em 0.2em 0em;
 }
 
-#wiki-content {
+.wiki-content {
   padding: 1px 1px 1px 1px;
 }
 
-#wiki-img {
+.wiki-img {
   width: 100%;
 }
