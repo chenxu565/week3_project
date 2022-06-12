@@ -1,5 +1,7 @@
 import "./styles.css";
 
+let breeds = ["African", "Pekinese", "Cockapoo", "Beagle", "Briard"];
+/*
 let fetch_addr = [
   "https://dog.ceo/api/breed/african/images/random",
   "https://dog.ceo/api/breed/pekinese/images/random",
@@ -7,7 +9,7 @@ let fetch_addr = [
   "https://dog.ceo/api/breed/beagle/images/random",
   "https://dog.ceo/api/breed/briard/images/random"
 ];
-
+*/
 let description = [
   "Considered a landrace with limited human interference in their breeding, the Africanis has also been maintained by human owners. The Africanis is a medium-sized, lightly built dog with a long slender muzzle and, usually, a short coat. It has been described as resembling a cross between a Greyhound and a Dingo.",
   "The Pekingese is a breed of toy dog, originating in China. The breed was favored by royalty of the Chinese Imperial court as both a lap dog and companion dog, and its name refers to the city of Peking where the Forbidden City is located. ",
@@ -47,7 +49,7 @@ function initItem_(container, index) {
 
   let wikiHeader = document.createElement("h1");
   wikiHeader.classList.add("wiki-header");
-  //  wikiHeader.innerHTML = bn;
+  wikiHeader.innerHTML = breeds[index];
   wikiItem.appendChild(wikiHeader);
 
   let wikiContent = document.createElement("div");
@@ -64,12 +66,17 @@ function initItem_(container, index) {
   wikiImg.classList.add("wiki-img");
   //  wikiImg.src = src;
 
-  fetch(fetch_addr[index])
+  let fetch_addr =
+    "https://dog.ceo/api/breed/" +
+    breeds[index].toLowerCase() +
+    "/images/random";
+
+  fetch(fetch_addr)
     .then((response) => response.json())
     .then((data) => {
-      let bn = data["message"].split("/")[4];
+      //let bn = data["message"].split("/")[4];
       let src = data["message"];
-      wikiHeader.innerHTML = bn;
+      //wikiHeader.innerHTML = bn;
       paragraph.innerHTML = description[index];
       wikiImg.src = src;
     });
