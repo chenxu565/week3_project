@@ -30,17 +30,61 @@ function initializeCode() {
   let container = document.createElement("div");
   container.classList.add("container");
 
-  //  console.log(test);
   for (let i = 0; i < 5; i++) {
-    fetch(fetch_addr[i])
+    /*   fetch(fetch_addr[i])
       .then((response) => response.json())
       .then((data) => {
         initItem(container, data, description[i]);
-      });
+      });*/
+    initItem_(container, i);
   }
   body.appendChild(container);
 }
 
+function initItem_(container, index) {
+  let wikiItem = document.createElement("div");
+  wikiItem.classList.add("wiki-item");
+
+  let wikiHeader = document.createElement("h1");
+  wikiHeader.classList.add("wiki-header");
+  //  wikiHeader.innerHTML = bn;
+  wikiItem.appendChild(wikiHeader);
+
+  let wikiContent = document.createElement("div");
+  wikiContent.classList.add("wiki-content");
+
+  let paragraph = document.createElement("p");
+  paragraph.classList.add("wiki-text");
+  //  paragraph.innerHTML = desc;
+
+  let imageContainer = document.createElement("div");
+  imageContainer.classList.add("img-container");
+
+  let wikiImg = document.createElement("img");
+  wikiImg.classList.add("wiki-img");
+  //  wikiImg.src = src;
+
+  fetch(fetch_addr[index])
+    .then((response) => response.json())
+    .then((data) => {
+      let bn = data["message"].split("/")[4];
+      let src = data["message"];
+      wikiHeader.innerHTML = bn;
+      paragraph.innerHTML = description[index];
+      wikiImg.src = src;
+    });
+
+  imageContainer.appendChild(wikiImg);
+
+  wikiContent.appendChild(paragraph);
+  wikiContent.appendChild(imageContainer);
+
+  wikiItem.appendChild(wikiContent);
+
+  container.appendChild(wikiItem);
+}
+
+/*
 function initItem(container, data, desc) {
   let bn = data["message"].split("/")[4];
   let src = data["message"];
@@ -76,3 +120,4 @@ function initItem(container, data, desc) {
 
   container.appendChild(wikiItem);
 }
+*/
