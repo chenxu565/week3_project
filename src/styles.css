@@ -24,13 +24,15 @@ body {
   /* layout for desktop*/
   .wiki-content {
     display: flex;
-    flex-direction: row-reverse;
+    /*  flex-direction: row-reverse;*/
   }
   .wiki-text {
     max-width: 50%;
+    min-width: 50%;
   }
   .img-container {
     min-width: 50%;
+    max-width: 50%;
   }
   .container {
     max-width: 960px;
